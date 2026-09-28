@@ -167,6 +167,8 @@ char타입은 문자를 저장할 변수를 선언하기 위한 것이지만, �
 
 NaN은 'Not a Number'의 약어로 실수가 아닌 숫자(허수)를 뜻한다.
 
+~p.100
+
 | Term & Category | Definition, Role & Example |
 | :--- | :--- |
 | **변수(variable)** | 단 하나의 값을 저장할 수 있는 메모리 공간 |
