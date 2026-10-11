@@ -1058,10 +1058,139 @@ dd if=input_file of=output_file [bs=block_size [count=blocks]]
 편집 가능한 CD-ROM에 쓰기 작업은 두 단계로 이루어진다. CD-ROM의 파일시스템 이미지인 ISO 이미지 파일을 구성하는 것과 CD-ROM에 이미지 파일을 복사하는 것이다.
 
 ##### CD-ROM 이미지 복사본 만들기
+
+기존 CD-ROM의 ISO 이미지를 만들고 싶다면 dd 명령어를 사용해서 CD-ROM에 있는 모든 데이터 블록을 읽어 들여 그것을 로컬 파일에 복사한다.
+
+```text
+dd if=dev/cdrom of=ubunto.iso
+```
+
 ##### 파일 이미지 만들기
+
+디렉토리 내용을 포함하는 ISO 이미지 파일을 생성하려면 genisoimage라는 프로그램을 사용하면 된다.
+
+```text
+genisoimage -0 cd-rom.iso -R -J ~/cd-rom-files
+```
+
+-R 옵션은 **Rock Ridge 확장용** 메타데이터를 추가하여 긴 파일명과 POSIX 형식의 파일 퍼미션을 사용할 수 있게 한다. -J 옵션으로 **Joliet 확장**을 지원하여 윈도우에서 긴 파일명을 사용할 수 있게 한다.
+
 #### CD-ROM 이미지 쓰기
+
 ##### ISO 이미지를 직접 마운트하기
+
+mount 명령어에 -o loop옵션을 사용하면(-t iso9660으로 파일 시스템 타입을 지정해줘야 한다.) 이미지 파일이 마치 하나의 장치로 인식되어 이미지 파일을 마운트하여 파일시스템 트리에 연결할 수 있다. **이미지 파일도 역시 마운트 해제 명령어를 꼭 실행해야 한다.**
+
 ##### CD-RW 지우기
+
+쓰기 가능한 CD-RW 매체를 재사용하려면 이전의 내용을 삭제하거나 **빈 상태**로 만들어야 한다. wodim 명령어를 이용하여 CD 레코더의 장치 이름을 지정하고 지울 방법을 선택한다.
+
+```text
+wodim dev=/dev/cdrw blank=fast
+```
+
 ##### 이미지 쓰기
+
+```text
+wodim dev=/dev/cdrw image.iso
+```
+
+이미지 쓰기 작업을 할 때 흔히 사용되는 옵션
+
+* -v: 자세한 내용을 보여 주는 것
+* -dao(disc-at-once): 디스크 단위 기록 모드로 디스크 쓰기를 실행할 때 사용하는 것으로 상업적인 생산을 목적으로 디스크를 만들 때 주로 사용한다. <br>wodim의 기본 쓰기 모드는 트랙 단위 기록(track-at-once) 모드로 음악을 레코딩할 때 유용하게 쓰인다.
+
+### 네트워킹
+
+* ping - IMCP ECHO_REQUEST를 네트워크 호스트에 전송하기
+* traceroute - 네트워크 호스트로 가는 패킷 경로 보기
+* netstat - 네트워크 연결 상태, 라우팅 테이블, 인터페이스 통계, masquerade 접속, 멀티캐스트 현황 등 보기
+* ftp - 인터넷 파일 전송 프로그램
+* lftp - 개선된 인터넷 파일 전송 프로그램
+* wget - 비대화식 네트워크 다운로더
+* ssh - OpenSSH SSH 클라이언트(원격 로그인 프로그램)
+* scp - 원격 보안 복사기(원격 파일 복사 프로그램)
+* sftp - 보안 파일 전송 프로그램
+
+#### 네트워크 점검 및 모니터링
+
+##### ping-네트워크 호스트로 고유 패킷 전송하기
+
+ping 명령어는 IMCP ECHO-REQUEST라고 하는 고유의 네트워크 패킷을 지정된 네트워크 호스트로 전송한다.
+
+http://www.linuxcommand.org/ 에 접속하려고 하면 다음과 같이 ping 명령어를 사용할 수 있다.
+
+```text
+ikjun@localhost:~$ ping linuxcommand.org
+PING linuxcommand.org (216.105.38.11) 56(84) bytes of data.
+64 bytes from secureprojects.sourceforge.net (216.105.38.11): icmp_seq=1 ttl=41 time=166 ms
+```
+
+##### traceroute - 네트워크 패킷 경로 추적하기
+
+traceroute 프로그램은 로컬 시스템부터 지정된 호스트까지의 모든 네트워크 이동 구간(hop)들을 보여준다. 하지만 라우터를 식별할 수 없는 경우(라우터 환경설정, 네트워크 정체 상황, 방화벽 등의 이유로)에느 별표로 표시된다.
+
+##### netstat - 네트워크 설정 및 통계 정보 확인하기
+
+```text
+ikjun@localhost:~$ netstat -ie
+Kernel Interface table
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.17.143  netmask 255.255.240.0  broadcast 172.20.31.255
+        inet6 fe80::215:5dff:feaa:4a63  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:aa:4a:63  txqueuelen 1000  (Ethernet)
+        RX packets 245  bytes 252293 (252.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 400  bytes 45399 (45.3 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 86  bytes 8612 (8.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 86  bytes 8612 (8.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+netstat 프로그램은 다양한 네트워크 설정 사항이나 통계 정보를 확인하는 데 사용된다. -ie 옵션으로 시스템의 네트워크 인터페이스 정보를 확인할 수 있다.
+
+두 개의 네트워크 인터페이스가 있다. 첫 번째 인터페이스는 eth0라는 것인데, 이는 이더넷 인터페이스를 말한다. 두 번째 인터페이스인 lo는 루프백 인터페이스로 시스템 자체에서 네트워클 상태를 테스트할 때 사용하는 가상 인터페이스이다.
+
+#### 네트워크로 파일 전송하기
+
+##### ftp - 파일 전송 프로토콜로 파일 전송하기
+
+ftp는 네트워크에서 사용되는 프로토콜인 파일 전송 프로토콜이라는 이름에서 따온 것이다. ftp는 네트워크상에서 업로드 및 다운로드를 위해 파일을 저장하고 있는 **FTP서버**와 통신한다. 
+
+FTP는 보안에 취약하다. 왜냐하면, 계정 정보가 **평문**으로 전송되기 때문이다. 그래서 인터넷상에서 FTP를 사용할 땐 **anonymous FTP 서버**를 사용한다. **익명** 서버를 사용하면 익명의 사용자명과 의미 없는 비밀번호를 사용하여 로그인할 수 있다.
+
+##### lftp - 향상된 ftp
+
+lftp는 기존의 ftp 프로그램과 거의 비슷한 기능을 가지지만 그 외 편리한 부가적인 기능이 제공된다. (e.g. 다중 프로토콜 지원(HTTP 포함), 다운로드 실패 시 자동으로 재시도하기, 백그라운드 프로세스, 탭으로 경로명 자동 완성 등)
+
+##### wget - 비대화식 네트워크 다운로더
+
+웹이나 FTP 사이트를 통해 컨텐츠를 다운로드할 때 유용한 프로그램이다.
+
+#### 원격 호스트와 안전하게 통신하기
+
+수년간 유닉스형 운영체제는 네트워크를 통해 원격으로 시스템을 관리할 수 있는 기능이 있는 프로그램들은 공통적으로 평문으로 통신 정보를 송수신한다는 문제를 가지고 있었다.
+
+##### ssh - 원격 컴퓨터에 안전하게 로그인하기
+
+평문으로 통신 정보를 송수신하는 문제를 해결하기 위한 새로 개발된 프로토콜인 SSH(안전한 쉘)는 1. 원격 호스트에 대한 진위성(중간자 공격을 방지)을 입증해주고, 2. 로컬과 원격 호스트 간의 모든 통신을 암호화한다.
+
+SSH는 원격 호스트에서 구동 중인 22번 포트로 연결을 기다리는 SSH 서버와 원격 서버와 통신하기 위해 로컬 시스템에서 사용되는 SSH 클라이언트다.
+
+##### scp와 sftp - 안전하게 파일 전송하기
+
+네트워크를 통해 파일을 복사할 때, SSH로 암호화된 터널을 활용할 수 있는 프로그램
+
+1. **scp(보안 복사)**: 목적지에 대한 경로명이나 대상이 되는 정보 앞에 원격 호스트명과 콜론 기호가 나온다.
+2. **sftp**: ftp 프로그램의 보안 기능이 향상된 버전을 의미한다. 원격 호스트에 실행할 FTP 서버가 필요하지 않다는 점에서 ftp와 다르다. sftp는 SSH 서버만 있으면 된다. 즉 SSH 클라이언트와 연결할 수 있는 어떠한 원격 머신이든 FTP와 같은 서버로써 사용될 수 있다.
+
+
 
 ## <a id="p4"></a>Part 4 쉘 스크립트 작성
