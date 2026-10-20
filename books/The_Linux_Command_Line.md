@@ -1829,9 +1829,55 @@ configure이 소스 디렉토리에 생성한 새 파일들 중 Makefile은 make
 
 ##### 변수와 상수 생성
 
+- 변수란 변할 수 있는 값이다.
+- 상수란 이름이 정의되고 값이 지정된다는 점에서 변수와 같지만 그 값은 변하지 않는다는 점이 다르다.
+
 ##### 변수와 상수에 값 할당
 
+```text
+variable=value
+```
+
+*variable*에는 변수 이름이, *value*에는 문자열이 들어간다. 다른 프로그래밍 언어와는 달리 쉘은 변수에 할당되는 값의 데이터 형식을 전혀 고려하지 않고 모두 문자열로 인식한다.
+
 #### Here 문서(Here Documents)
+
+here 문서는 I/O 리다이렉션의 추가적인 형태로 텍스트 본문을 스크립트에 삽입할 때 그리고 명령어의 표준 입력으로 보낼 때 사용한다.
+
+```text
+command << token
+text
+token
+```
+
+command는 표준 입력을 허용하는 명령어 이름이고, token은 삽입할 텍스트의 끝을 가리키는 문자열을 말한다.
+
+```text
+#!/bin/bash
+# Program to output a system information page
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME=$(date +"%x %r %Z")
+TIME_STAMP="Generated $CURRENT_TIME, by $USER"
+
+cat << _EOF_
+<HTML>
+    <HEAD>
+        <TITLE>$TITLE</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>$TITLE</H1>
+        <p>$TIME_STAMP</p>
+    </BODY>
+</HTML>
+_EOF_
+```
+
+echo 명령어를 사용하는 대신 cat 명령어와 here 문서를 사용하였다. \_EOF\_문자열(**파일 끝**)이 token으로 사용되었고 삽입된 텍스트의 끝을 표시해준다. 여기서 주목해야 할 점은 token은 반드시 단독 사용해야 하고 그 줄에 어떠한 빈칸도 허용되지 않는다.
+
+here 문서의 장점
+
+- here 문서에서는 쉘이 인식하는 따옴표 및 쌍 따옴표의 의미는 사라진다.
+- here 문서는 표준 입력을 허용하는 명령어와 함께 사용될 수 있다.
 
 ### 하향식 설계
 
