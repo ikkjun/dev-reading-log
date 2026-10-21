@@ -114,7 +114,7 @@ cd라는 명령어로 현재 작업중인 디렉토리를 변경할 수 있다. 
 
 #### mkdir - 디렉토리 생성
 
-```text
+```bash
 mkdir directory...
 ```
 
@@ -122,7 +122,7 @@ mkdir directory...
 
 cp item1 item2
 
-```text
+```bash
 cp item... directory
 ```
 
@@ -132,13 +132,13 @@ item1이란 파일 또는 디렉토리를 item2라는 파일 또는 디렉토리
 
 mv 명령어를 어떻게 사용하느냐에 따라서 파일을 이동할 수도 있고 파일명을 수정할 수도 있다. mv 명령을 실행하면 두 경우 모두 기존 파일명은 존재하지 않게 된다.
 
-```text
+```bash
 mv item1 item2
 ```
 
 item1 파일 또는 디렉토리를 item2로 이동하거나 이름을 바꾼다.
 
-```text
+```bash
 mv item... directory
 ```
 
@@ -146,19 +146,19 @@ mv item... directory
 
 #### rm - 파일 및 디렉토리 삭제
 
-```text
+```bash
 rm item...
 ```
 
 #### ln - 링크 생성
 
-```text
+```bash
 ln file link
 ```
 
 하드 링크를 만들 때 사용하는 것이고,
 
-```text
+```bash
 ln -s item link
 ```
 
@@ -195,7 +195,7 @@ ln -s item link
 
 type 명령어는 쉘에 내장된 형식으로 명령어 이름을 입력하면 쉘이 실행하게 될 명령어가 어떤 타입인지를 보여준다.
 
-```text
+```bash
 type command
 ```
 
@@ -215,7 +215,7 @@ type command
 
 특별한 페이징 프로그램인 man은 매뉴얼 페이지를 볼 때 사용하는 명령어이다.
 
-```text
+```bash
 man program
 ```
 
@@ -235,7 +235,7 @@ GNU 프로젝트는 **info 페이지**라는 man 페이지의 대안을 제공�
 
 alias 명령어를 이용하여 나만의 명령어를 만들 수 있다. 세미콜론(;)으로 가명령어를 구분하여 한 줄에 하나 이상의 명령어를 입력하는 것이 가능하다
 
-```text
+```bash
 command1; command2; command3
 
 alias name='string'
@@ -276,7 +276,7 @@ ls와 같은 프로그램은 **표준 출력(stdout)** 이라고 불리는 특�
 
 ##### cat - 파일 붙이기
 
-```text
+```bash
 cat [file...]
 ```
 
@@ -284,7 +284,7 @@ cat [file...]
 
 표준 입력으로부터 데이터를 읽고, 표준 출력으로 데이터를 전송하는 명령어의 능력은 **파이프라인**(|)이라고 하는 쉘의 기능으로 보다 더 응용될 수 있다.
 
-```text
+```bash
 command1 | command2
 ```
 
@@ -304,7 +304,7 @@ wc(word count: 단어 개수 세기) 명령어는 파일에 들어있는 단어 
 
 grep(global, regular expression, print) 명령어는 파일의 텍스트 패턴을 찾을 때 사용하는 프로그램이다.
 
-```text
+```bash
 grep pattern [file...]
 ```
 
@@ -346,7 +346,7 @@ head 명령어로 파일의 첫 10줄만 출력할 수 있고, tail 명령어로
 
 명령어 치환으로 명령어의 출력 결과를 확장으로 사용할 수 있다.
 
-```text
+```bash
 $ echo $(ls)
 ```
 
@@ -423,7 +423,7 @@ bash는 입력된 명령어에 대한 히스토리를 가지고 있는데, 이 �
 
 언제든지 히스토리 목록을 확인할 수 있다.
 
-```text
+```bash
 history | less
 ```
 
@@ -468,7 +468,7 @@ history | less
 
 #### 읽기, 쓰기, 실행
 
-```text
+```bash
 ikjun@localhost:~$ > foo.txt
 ikjun@localhost:~$ ls -l foo.txt
 -rw-r--r-- 1 ikjun ikjun 0 Oct  8 15:46 foo.txt
@@ -508,13 +508,13 @@ umask 명령어는 파일이 생성될 때 주어진 기본 퍼미션을 제어�
 
 ##### su - 다른 사용자 ID와 그룹 ID로 쉘 실행
 
-```text
+```bash
 su [-[l]] [user]
 ```
 
 다음 방법으로 su 명령을 사용하면, 새로운 명령으로 시작하지 않고 단일 명령어 수행이 가능하다.
 
-```text
+```bash
 su -c 'command'
 ```
 
@@ -531,7 +531,7 @@ su와 sudo의 차이점
 
 chown 명령어는 파일 또는 디렉토리의 소유자와 그룹 소유자를 변경하는 데 사용된다.
 
-```text
+```bash
 chown [owner][:[group]] file...
 ```
 
@@ -539,7 +539,7 @@ chown [owner][:[group]] file...
 
 #### 사용자 비밀번호 변경
 
-```text
+```bash
 passwd [user]
 ```
 
@@ -566,7 +566,7 @@ passwd [user]
 
 ##### ps 명령어로 프로세스 보기
 
-```text
+```bash
 ikjun@localhost:~$ ps
     PID TTY          TIME CMD
     363 pts/0    00:00:00 bash
@@ -589,7 +589,7 @@ ps 명령어가 시스템 동작에 관한 많은 정보를 주긴 하지만 오
 
 &기호를 명령어와 함께 사용하면 프로그램을 실행 즉시 백그라운드로 이동한다.
 
-```text
+```bash
 ikjun@localhost:~$ xlogo &
 [1] 1238
 ```
@@ -610,7 +610,7 @@ kill 명령어는 프로세스를 종료("kill")하기 위해 사용된다. 이�
 
 ##### kill로 시그널 보내기
 
-```text
+```bash
 kill [-signal] PID ...
 ```
 
@@ -618,7 +618,7 @@ kill [-signal] PID ...
 
 killall 명령어를 사용하면 명시된 프로그램 또는 사용자 이름과 일치하는 다수의 프로세스에 시그널을 보내는 것도 가능하다.
 
-```text
+```bash
 killall [-u user] [-signal] name ...
 ```
 
@@ -697,7 +697,7 @@ killall [-u user] [-signal] name ...
 
 .bashrc 파일에 편집한 내용들은 터미널 세션을 종료하고 다시 새로 실행할 때까지 적용되지 않는다. 왜냐하면 .bashrc 파일은 최초 세션이 시작될 때 참조되는 파일이기 때문이다. 하지만 bash에 강제로 이 파일을 참조하도록 명령할 수 있다.
 
-```text
+```bash
 ikjun@localhost:~$ source .bashrc
 ```
 
@@ -718,19 +718,19 @@ vi란 이름은 visual이란 단어에서 따온 것인데, 그 이유는 원래
 
 vi를 시작하려면 다음과 같이 입력하면 된다..
 
-```text
+```bash
 ikjun@localhost:~$ vi
 ```
 
 vi 편집기를 종료하려면 다음 명령어를 입력한다(콜론 기호도 명령어이다).
 
-```text
+```bash
 :q
 ```
 
 어떤 이유에서든 vi가 종료되지 않으면 느낌표를 추가해서 강제 종료할 수 있다.
 
-```text
+```bash
 !:q
 ```
 
@@ -820,7 +820,7 @@ vi는 ex 명령어를 사용하여 해당 줄이나 파일 전체에서 검색�
 
 커맨드 라인에 다음과 같이 여러 파일을 지정하여 연 다음 vi로 편집할 수 있다.
 
-```text
+```bash
 vi file1 file2 file3
 ```
 
@@ -1047,7 +1047,7 @@ fsck(filesystem check)라는 프로그램에 의해 장치들이 마운트되기
 
 dd 프로그램으로 장치 간에 데이터 블록을 복사할 수 있다.
 
-```text
+```bash
 dd if=input_file of=output_file [bs=block_size [count=blocks]]
 ```
 
@@ -1061,7 +1061,7 @@ dd if=input_file of=output_file [bs=block_size [count=blocks]]
 
 기존 CD-ROM의 ISO 이미지를 만들고 싶다면 dd 명령어를 사용해서 CD-ROM에 있는 모든 데이터 블록을 읽어 들여 그것을 로컬 파일에 복사한다.
 
-```text
+```bash
 dd if=dev/cdrom of=ubunto.iso
 ```
 
@@ -1069,7 +1069,7 @@ dd if=dev/cdrom of=ubunto.iso
 
 디렉토리 내용을 포함하는 ISO 이미지 파일을 생성하려면 genisoimage라는 프로그램을 사용하면 된다.
 
-```text
+```bash
 genisoimage -0 cd-rom.iso -R -J ~/cd-rom-files
 ```
 
@@ -1085,13 +1085,13 @@ mount 명령어에 -o loop옵션을 사용하면(-t iso9660으로 파일 시스�
 
 쓰기 가능한 CD-RW 매체를 재사용하려면 이전의 내용을 삭제하거나 **빈 상태**로 만들어야 한다. wodim 명령어를 이용하여 CD 레코더의 장치 이름을 지정하고 지울 방법을 선택한다.
 
-```text
+```bash
 wodim dev=/dev/cdrw blank=fast
 ```
 
 ##### 이미지 쓰기
 
-```text
+```bash
 wodim dev=/dev/cdrw image.iso
 ```
 
@@ -1120,7 +1120,7 @@ ping 명령어는 IMCP ECHO-REQUEST라고 하는 고유의 네트워크 패킷�
 
 http://www.linuxcommand.org/ 에 접속하려고 하면 다음과 같이 ping 명령어를 사용할 수 있다.
 
-```text
+```bash
 ikjun@localhost:~$ ping linuxcommand.org
 PING linuxcommand.org (216.105.38.11) 56(84) bytes of data.
 64 bytes from secureprojects.sourceforge.net (216.105.38.11): icmp_seq=1 ttl=41 time=166 ms
@@ -1132,7 +1132,7 @@ traceroute 프로그램은 로컬 시스템부터 지정된 호스트까지의 �
 
 ##### netstat - 네트워크 설정 및 통계 정보 확인하기
 
-```text
+```bash
 ikjun@localhost:~$ netstat -ie
 Kernel Interface table
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -1236,7 +1236,7 @@ locate 프로그램은 오직 파일명에 근거하여 파일을 찾을 수 있
 
 find 명령어가 지원하는 모든 테스트들조차도 테스트 간의 논리적인 관계를 설명하기 위한 더 좋은 방법이 필요할 수도 있다. find 프로그램은 복잡한 논리적 관계를 설정할 수 있도록 **논리 연산자**를 사용하여 테스트들을 결합하는 방법을 제공한다.
 
-```text
+```bash
 ikjun@localhost:~$ find ~ \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
 /home/ikjun
 /home/ikjun/foo.txt
@@ -1261,13 +1261,13 @@ ikjun@localhost:~$ find ~ \( -type f -not -perm 0600 \) -or \( -type d -not -per
 
 미리 정의된 액션 뿐만 아니라 임의의 명령어를 실행할 수도 있다. 대표적인 것으로 -exec 액션을 활용한 명령이다.
 
-```text
+```bash
 -exec command {} ;
 ```
 
 command 자리에는 명령어의 이름이 들어가고, {} 기호에는 현재 경로명에 대한 심볼릭 링크를 표시한다. 중괄호와 세미콜론 기호는 쉘에서 특수한 의미로 사용되기 때문에 반드시 인용되거나 확장되어야 한다.
 
-```text
+```bash
 -exec rm '{}' ';'
 ```
 
@@ -1284,14 +1284,14 @@ command 자리에는 명령어의 이름이 들어가고, {} 기호에는 현재
 
 ##### 놀이터로 돌아가자
 
-```text
+```bash
 ikjun@localhost:~$ mkdir -p playground/dir-{00{1..9},0{10..99},100}
 ikjun@localhost:~$ touch playground/dir-{00{1..9},0{10..99},100}/file-{A..Z}
 ```
 
 touch 명령어는 파일이 수정된 시간을 갱신하거나 설정할 때 사용하지만 파일명 인자가 존재하지 않는 파일이라면 새로운 빈 파일을 만든다.
 
-```text
+```bash
 find playground \( -type f -not -perm 0600 \) -or \( -type d -not -perm 0700 \)
 
 # 올바른 퍼미션과 일치하지 않는 파일 또는 디렉토리 출력하기
@@ -1349,7 +1349,7 @@ bzip2는 압축 속도는 느리지만 높은 압축률을 자랑한다. 하지�
 
 tar 프로그램은 파일 보관을 위한 전통적인 툴이다. 그 이름은 tape archive의 준말로, 백업 테이프를 만들기 위한 도구에서 유래되었다. tar 아카이브는 여러 파일로 구성된 그룹이거나, 하나 이상의 디렉토리 트리 또는 이 두 가지가 혼합된 형태일 수 있다.
 
-```text
+```bash
 tar mode[options] pathname...
 
 ikjun@localhost:~$ tar tf playground.tar
@@ -1361,7 +1361,7 @@ ikjun@localhost:~$ tar tf playground.tar
 
 zip 프로그램은 파일 압축과 보관을 한 번에 할 수 있는 프로그램이다. 하지만 리눅스에서는 gzip이 지배적인 압축 프로그램이고 그 다음 bzip2를 많이 사용한다. 리눅스 사용자는 zip 프로그램으로 파일을 압축하는 대신 주로 윈도우 시스템과 파일을 교환할 때 사용한다.
 
-```text
+```bash
 zip options zipfile file...
 ```
 
@@ -1377,7 +1377,7 @@ zip 프로그램에 대해서 알아둬야 할 중요한 것은(tar와는 반대
 
 rsync 프로그램은 rsunc remote-update protocol을 이용하여 로컬과 원격 디렉토리 모두 동기화한다.
 
-```text
+```bash
 rsync options source destination
 ```
 
@@ -1406,7 +1406,7 @@ source나 destination 둘 중 하나는 반드시 로컬 파일이어야 한다.
 
 grep이란 global regular expression print란 구절에서 유래된 이름이다. 기본적으로 grep은 지정된 정규 표현식과 일치하는 표준 출력을 가진 행을 출력한다.
 
-```text
+```bash
 grep [options] regex [file...]
 ```
 
@@ -1457,7 +1457,7 @@ POSIX가 정규 표현식을 구현하는 방법
 
 **얼터네이션**(alternation)은 표현식 집합 가운데에서 일치하는 것을 찾아주는 기능이다. 얼터네이션은 수직 파이프 메타 문자(|)를 이용하여 표현한다.
 
-```text
+```bash
 ikjun@localhost:~$ echo "AAA" | grep -E "AAA|BBB"
 ```
 
@@ -1630,7 +1630,7 @@ pr 프로그램은 텍스트에 **페이지 매기기** 위해 사용된다.
 
 printf(포맷된 출력)는 원래 C 프로그래밍 언어를 위해 개발되었다.
 
-```text
+```bash
 printf "format" arguments
 ```
 
@@ -1761,12 +1761,12 @@ CUPS는 프린트 큐에 존재하는 인쇄 작업을 종료하고 제거하기
 
 대부분의 프로그램은 다음 두 명령어로 간단히 빌드된다.
 
-```text
+```bash
 ./configure
 make
 ```
 
-configure 프로글매은 소스 트리와 함께 제공된 쉘 스크립트이며 빌드 환경을 분석하는 역할을 한다. configure는 쉘이 일반적으로 예상하는 프로그램들의 위치에 있지 않기 때문에 반드시 ./와 함께 명령어를 사용해야 한다.
+configure 프로그램은 소스 트리와 함께 제공된 쉘 스크립트이며 빌드 환경을 분석하는 역할을 한다. configure는 쉘이 일반적으로 예상하는 프로그램들의 위치에 있지 않기 때문에 반드시 ./와 함께 명령어를 사용해야 한다.
 
 configure이 소스 디렉토리에 생성한 새 파일들 중 Makefile은 make프로그램이 정확히 어떻게 프로그램을 빌드하는지를 알려주는 설정 파일이다. make 프로그램은 최종 프로그램으로 구성되는 요소들 간의 관계와 의존성을 기술한 makefile을 입력받는다. makefile의 대부분은 **타겟**(target)과 타겟 생성에 의존적인 파일들의 정의로 라인을 구성한다.
 
@@ -1834,7 +1834,7 @@ configure이 소스 디렉토리에 생성한 새 파일들 중 Makefile은 make
 
 ##### 변수와 상수에 값 할당
 
-```text
+```bash
 variable=value
 ```
 
@@ -1844,7 +1844,7 @@ variable=value
 
 here 문서는 I/O 리다이렉션의 추가적인 형태로 텍스트 본문을 스크립트에 삽입할 때 그리고 명령어의 표준 입력으로 보낼 때 사용한다.
 
-```text
+```bash
 command << token
 text
 token
@@ -1852,7 +1852,7 @@ token
 
 command는 표준 입력을 허용하는 명령어 이름이고, token은 삽입할 텍스트의 끝을 가리키는 문자열을 말한다.
 
-```text
+```bash
 #!/bin/bash
 # Program to output a system information page
 TITLE="System Information Report For $HOSTNAME"
@@ -1880,6 +1880,85 @@ here 문서의 장점
 - here 문서는 표준 입력을 허용하는 명령어와 함께 사용될 수 있다.
 
 ### 하향식 설계
+
+최상위 단계들을 정의하고 이러한 단계들을 구체적으로 나누어가는 과정을 **하향식 설계**(top-down design)라고 한다.
+
+#### 쉘 함수
+
+쉘 함수는 미니스크립트와 같다. 즉 스크립트 안에 있는 또 다른 스크립트이며 독립적인 프로그램으로서 동작한다.
+
+쉘 함수 정의 방법
+
+1. **`function` 키워드 사용 (Bash 전용)**
+
+```bash
+function name {
+    commands
+    return
+}
+```
+
+2. **방법 B. POSIX 표준 방식 (권장 · 호환성 우수)**
+
+```bash
+name() {
+    commands
+    return
+}
+```
+
+_name_ 의 위치에는 함수 이름이, _commands_ 자리에는 함수에서 사용될 일련의 명령어들이 위치한다.
+
+#### 지역 변수
+
+**전역 변수**는 프로그램 전반에 걸쳐 적용되는 변수다. **지역 변수**는 해당 변수가 정의된 쉘 함수 내에서만 유효하며 함수가 종료되는 순간 그 효과 또한 사라진다.
+
+#### 스크립트 실행 상태 유지
+
+스텁(stubs)이라는 빈 함수를 프로그램에 추가하면 초기 단계에서 프로그램의 논리적 흐름을 확인해볼 수 있다.
+
+```bash
+#!/bin/bash
+# Program to output a system information page
+CURRENT_TIME=$(date +"%x %r %Z")
+TITLE="System Information Report For $HOSTNAME"
+TIME_STAMP="Generated $CURRENT_TIME, by $USER"
+report_uptime () {
+    cat <<- _EOF_
+        <H2>System Uptime</H2>
+        <PRE>$(uptime)</PRE>
+_EOF_
+    return
+}
+report_disk_space () {
+    cat <<- _EOF_
+        <H2>Disk Space Utilization</H2>
+        <PRE>$(df -h)</PRE>
+_EOF_
+    return
+}
+report_home_space () {
+    cat <<- _EOF_
+        <H2>Home Space Utilization</H2>
+        <PRE>$(du -sh /home/*)</PRE>
+_EOF_
+    return
+}
+cat << _EOF_
+<HTML>
+    <HEAD>
+        <TITLE>$TITLE</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>$TITLE</H1>
+        <p>$TIME_STAMP</p>
+        $(report_uptime)
+        $(report_disk_space)
+        $(report_home_space)
+    </BODY>
+</HTML>
+_EOF_
+```
 
 ### 흐름 제어: if 분기
 
