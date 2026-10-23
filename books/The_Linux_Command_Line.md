@@ -1823,6 +1823,12 @@ configure이 소스 디렉토리에 생성한 새 파일들 중 Makefile은 make
 
 #### 1단계: 간단한 HTML 문서 만들기
 
+파일을 저장한 후, 실행 퍼미션을 설정하고 실행시켜야 한다.
+
+```bash
+chmod 755 ~/bin/sys_info_page
+```
+
 #### 2단계 데이터 입력해보기
 
 #### 변수와 상수
@@ -2023,7 +2029,63 @@ bash는 분기를 수행할 수 있는 두 개의 제어 연산자를 제공한�
 
 ### 키보드 입력 읽기
 
+**대화식 모드**란 사용자와 프로그램 사이에 상호 작용하는 것을 말한다.
+
 #### read - 표준 입력에서 값 읽어오기
+
+read는 쉘의 내장 명령어로 표준 입력으로 들어온 내용을 한 줄씩 읽어올 때 사용된다.
+
+```bash
+read [-options] [variable...]
+```
+
+_option_ 위치에는 옵션 중 하나 이상을 지정하고, _variable_ 에는 입력 값을 할당할 변수명을 하나 이상 입력한다.
+
+```bash
+#!/bin/bash
+# read-integer: evaluate the value of an integer.
+echo -n "Please enter an integer -> "
+read int
+if [[ "$int" =~ ^-?[0-9]+$ ]]; then
+    if [ $int -eq 0 ]; then
+        echo "$int is zero."
+    else
+        if [ $int -lt 0 ]; then
+            echo "$int is negative."
+        else
+            echo "$int is positive."
+        fi
+        if [ $((int % 2)) -eq 0 ]; then
+            echo "$int is even."
+        else
+            echo "$int is odd."
+        fi
+    fi
+else
+    echo "Input value is not an integer." >&2
+    exit 1
+fi
+```
+
+```bash
+#!/bin/bash
+# read-multiple: read multiple values from keyboard
+echo -n "Enter one or more values > "
+read var1 var2 var3 var4 var5
+echo "var1 = '$var1'"
+echo "var2 = '$var2'"
+echo "var3 = '$var3'"
+echo "var4 = '$var4'"
+echo "var5 = '$var5'"
+```
+
+```bash
+#!/bin/bash
+# read-single: read multiple values into default variable
+echo -n "Enter one or more values > "
+read
+echo "REPLY = '$REPLY'"
+```
 
 ##### 옵션
 
@@ -2032,6 +2094,8 @@ bash는 분기를 수행할 수 있는 두 개의 제어 연산자를 제공한�
 #### 입력 값 검증
 
 #### 메뉴
+
+대화 모드의 일반적인 형식은 **메뉴 방식**이다.
 
 #### 마무리 노트
 
