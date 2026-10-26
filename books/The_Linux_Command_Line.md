@@ -2103,34 +2103,117 @@ echo "REPLY = '$REPLY'"
 
 ### 흐름 제어: While 루프와 Until 루프
 
+루핑(looping)은 프로그램의 일부를 반복적으로 실행할 때 사용한다.
+
 #### 루프 돌기(반복)
 
 #### while
 
+```bash
+while commands; do commands; done
+```
+
 #### 루프 탈출
+
+bash는 두 개의 내장 명령어를 제공하는데, 루프 내에서 프로그램의 흐름을 제어하기 위함이다. break 명령어는 즉각적으로 루프를 중단하고 프로그램이 루프 다음에 나오는 구문들을 실행하도록 한다. continue 명령어는 루프가 진행되는 중간에 뒤에 남은 내용을 건너뛰고 다음 루프의 처음부터 실행하도록 한다.
+
+true 명령어를 사용하여 while명령에 종료 상태를 제공하는 것으로 **무한 루프**를 설정했다. continue 명령어는 1을 선택하고 이것이 확인됐다면 다른 메뉴들에 대해서는 선택 여부를 굳이 검사할 필요가 전혀 없는 것이다.
+
+```bash
+#!/bin/bash
+# while-menu: a menu driven system information program
+DELAY=3 # Number of seconds to display results
+while true; do
+    clear
+    cat <<- _EOF_
+            Please Select:
+            1. Display System Information
+            2. Display Disk Space
+            3. Display Home Space Utilization
+            0. Quit
+_EOF_
+    read -p "Enter Selection [0-3] > "
+    if [[ $REPLY =~ ^[0-3]$ ]]; then
+        if [[ $REPLY == 1 ]]; then
+            echo "Hostname: $HOSTNAME"
+            uptime
+            sleep $DELAY
+            continue
+        fi
+        if [[ $REPLY == 2 ]]; then
+            df -h
+            sleep $DELAY
+            continue
+        fi
+        if [[ $REPLY == 3 ]]; then
+            if [[ $(id -u) -eq 0 ]]; then
+                echo "Home Space Utilization (All Users)"
+                du -sh /home/*
+            else
+                echo "Home Space Utilization ($USER)"
+                du -sh $HOME
+            fi
+            sleep $DELAY
+            continue
+        fi
+        if [[ $REPLY == 0 ]]; then
+            break
+        fi
+    else
+        echo "Invalid entry."
+        sleep $DELAY
+    fi
+done
+echo "Program terminated."
+```
 
 #### until
 
+until 명령어는 0이 아닌 종료 상태를 만났을 때 루프를 종료하는 대신에 계속 수행된다는 것만 제외하고 while과 동일하다. **until 루프**는 종료 상태 값으로 0을 받을 때까지 계속된다.
+
+```bash
+#!/bin/bash
+# until-count: display a series of numbers
+count=1
+until [ $count -gt 5 ]; do
+    echo $count
+    count=$((count + 1))
+done
+echo "Finished."
+```
+
 #### 루프를 이용한 파일 읽기
+
+while 및 until 명령으로 표준 입력을 처리할 수 있다.
 
 ### 문제 해결
 
 #### 구분 오류
+
 ##### 따옴표 누락
+
 ##### 예상치 못한 토큰이나 누락
+
 ##### 예상 외의 확장
 
 #### 논리 오류
+
 ##### 방어적 프로그래밍
+
 ##### 입력 값 검증
 
 #### 테스팅
+
 ##### 스텁(stub)
+
 ##### 테스트 케이스
 
 #### 디버깅
+
 ##### 문제 발생 지역 발견
+
 ##### 트레이싱(tracing)
+
 ##### 실행 중에 값 확인
 
 ### 흐름 제어: case 분기
