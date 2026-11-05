@@ -20,3 +20,9 @@ A personal reading log and study notes on systems, networks, cloud infrastructur
 | **Security** | 정보 보안 개론<br><sub>양대일 · 한빛아카데미</sub> | - | `Planned` | - |
 | **Security** | 네트워크 해킹과 보안<br><sub>홍성혁, 양대일 · 한빛아카데미</sub> | - | `Planned` | - |
 | **Security** | 정보 보안 개론과 실습 - 시스템 해킹과 보안<br><sub>양대일 · 한빛아카데미</sub> | - | `Planned` | - |
+
+Education
+
+| Course name | Duration | Status | Key Topics Covered |
+| :--- | :--- | :--- | :--- |
+| [SkShieldus Rookies](./SkShieldusRookies/README.md) | 2026.11.05 ~ | cyber security, generative ai |
