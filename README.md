@@ -2,6 +2,8 @@
 
 A personal reading log and study notes on systems, networks, cloud infrastructure, generative AI, and cybersecurity engineering.
 
+## Books
+
 | Category | Book Title | Duration | Status | Key Topics Covered |
 | :--- | :--- | :---: | :---: | :--- |
 | **CS Core** | [혼자 공부하는 컴퓨터 구조 + 운영체제](./books/혼자_공부하는_컴퓨터_구조_+_운영체제.md)<br><sub>강민철 저 · 한빛미디어</sub> | 2026.09.16 ~ 2026.09.22 | `Completed` | CPU, 프로세스, 스레드, 스케줄링, 파일 시스템 |
@@ -21,8 +23,8 @@ A personal reading log and study notes on systems, networks, cloud infrastructur
 | **Security** | 네트워크 해킹과 보안<br><sub>홍성혁, 양대일 · 한빛아카데미</sub> | - | `Planned` | - |
 | **Security** | 정보 보안 개론과 실습 - 시스템 해킹과 보안<br><sub>양대일 · 한빛아카데미</sub> | - | `Planned` | - |
 
-Education
+## Education
 
-| Course name | Duration | Status | Key Topics Covered |
-| :--- | :--- | :--- | :--- |
-| [SkShieldus Rookies](./SkShieldusRookies/README.md) | 2026.11.05 ~ | cyber security, generative ai |
+| Domain | Program name | Duration | Status | Key Topics Covered |
+| :--- | :--- | :--- | :--- | :--- |
+| **Cloud & Security** | [Sk 쉴더스 루키즈 36기](./SkShieldusRookies/README.md) | 2026.11.05 ~ | `In Progress` | Cloud Security, Generative AI |
