@@ -1,6 +1,6 @@
-# 📚 Reading Log & Technical Book Tracker
+# 📚 Technical Learning Archive
 
-A personal reading log and study notes on systems, networks, cloud infrastructure, generative AI, and cybersecurity engineering.
+A personal archive of technical reading, system/security training, and engineering studies.
 
 ## Books
 
